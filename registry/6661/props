@@ -5,9 +5,9 @@
         "args": ["0", "1" ]
     },
     "start": {
-        "command": "ls",
-        "args": ["-a" ],
-        "port_arg": -1
+        "command": "node",
+        "args": ["./testservice/test.js", 0 ],
+        "port_arg": 1
     },
     "commands": {
         "suspend": "/suspend",

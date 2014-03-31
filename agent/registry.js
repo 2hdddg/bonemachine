@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var async = require('async');
 
-function Registry(registry_path){
+function create_registry(registry_path){
     //  structure below path:
     //      /portx
     //          props       (contains: name, install, start, suspend url, stop url)
@@ -134,7 +134,7 @@ function Registry(registry_path){
     };
 }
 
-module.exports = Registry;
+module.exports = create_registry;
 
 /*
 var r = Registry('./registry');

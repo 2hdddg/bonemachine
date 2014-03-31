@@ -1,7 +1,7 @@
 var spawn = require('child_process').spawn;
 var S = require('string');
 
-function Service(registration){
+function create_service(registration){
     var process;
     var name = registration.name;
     var command = registration.start.command;
@@ -56,14 +56,16 @@ function Service(registration){
     };
 }
 
-module.exports = Service;
+module.exports = create_service;
 
-var create_registry = require('./serviceregistry');
-var r = create_registry('../registry');
+var create_registry = require('./registry');
+var r = create_registry('./registry');
 r.get_registrations(function(error, registrations){
     if (error){
         console.log(error);
     }
-    var service = Service(registrations[0]);
+    var service = create_service(registrations[0]);
     service.start();
+    var service2 = create_service(registrations[1]);
+    service2.start();
 });
