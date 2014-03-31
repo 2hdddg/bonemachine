@@ -1,0 +1,16 @@
+{
+    "name": "A service",
+    "install": {
+        "command": "node",
+        "args": ["0", "1" ]
+    },
+    "start": {
+        "command": "ls",
+        "args": ["-a" ],
+        "port_arg": -1
+    },
+    "commands": {
+        "suspend": "/suspend",
+        "stop": "/stop"
+    }
+}
