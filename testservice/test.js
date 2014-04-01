@@ -9,4 +9,5 @@ http.createServer(function(req, res){
     count++;
     res.write("count:" + count);
     res.end();
+    console.log("Served request");
 }).listen(port);

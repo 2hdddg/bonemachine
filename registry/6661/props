@@ -1,5 +1,5 @@
 {
-    "name": "A service",
+    "name": "Service1",
     "install": {
         "command": "node",
         "args": ["0", "1" ]
