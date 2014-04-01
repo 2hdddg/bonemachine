@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var async = require('async');
 
-function create_registry(registry_path){
+module.exports = function(registry_path){
     //  structure below path:
     //      /portx
     //          props       (contains: name, install, start, suspend url, stop url)
@@ -132,16 +132,4 @@ function create_registry(registry_path){
         // structure in path as described above
         get_registrations: get_registrations,
     };
-}
-
-module.exports = create_registry;
-
-/*
-var r = Registry('./registry');
-r.get_registrations(function(error, registrations){
-    if (error){
-        console.log(error);
-    }
-    console.log(registrations);
-});
-*/
+};

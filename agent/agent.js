@@ -1,10 +1,26 @@
-function create_agent(registry, create_service){
+var _ = require('lodash');
+
+module.exports = function(registry, create_service){
+    var services;
+
+    function start(callback){
+        registry.get_registrations(function(error, registrations){
+            if (error){
+                callback(error);
+                return;
+            }
+
+            services = _.map(registrations, function(registration){
+                return create_service(registration);
+            });
+
+            _.each(services, function(service){
+                service.start();
+            });
+        });
+    }
+
     return {
-        start: function(){
-            var registrations = registry.get_registrations();
-            
-        }
+        start: start
     };
 };
-
-module.exports = create_agent;
