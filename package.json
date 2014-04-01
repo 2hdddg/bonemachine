@@ -1,0 +1,26 @@
+{
+  "name": "bonemachine",
+  "description": "Microservices controller thingy",
+  "version": "0.0.1",
+  "author": "Peter Wilhelmsson <2hdddg@gmail.com>",
+  "contributors": [
+  ],
+  "dependencies": {
+    "async": "0.4.0",
+    "lodash": "2.4.1",
+    "string": "1.8.0"
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+    "service",
+    "microservice"
+  ],
+  "repository": "",
+  "scripts": {
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "license": "MIT"
+}
