@@ -9,7 +9,10 @@
     "lodash": "2.4.1",
     "string": "1.8.0",
     "restify": "~2.7.0",
-    "nomnom": "~1.6.2"
+    "nomnom": "~1.6.2",
+    "tar": "~0.1.19",
+    "fstream": "~0.1.25",
+    "base64stream": "~0.1.1"
   },
   "devDependencies": {
     "gulp": "~3.6.0",
