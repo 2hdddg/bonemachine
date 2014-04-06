@@ -10,9 +10,7 @@
     "string": "1.8.0",
     "restify": "~2.7.0",
     "nomnom": "~1.6.2",
-    "tar": "~0.1.19",
-    "fstream": "~0.1.25",
-    "base64stream": "~0.1.1"
+    "tar-pack": "~2.0.0"
   },
   "devDependencies": {
     "gulp": "~3.6.0",
