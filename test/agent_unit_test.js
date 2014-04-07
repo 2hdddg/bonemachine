@@ -42,6 +42,6 @@ describe('agent.start()', function(){
 
         var services = agent.get_services();
 
-        assert.equal(services[0].start_calls(), 1);
+        assert.strictEqual(services[0].start_calls(), 1);
     });
 });
