@@ -22,26 +22,52 @@ function registrationFake(){
     };
 }
 
-describe('agent.start()', function(){
-    var Agent = sandbox.require('../lib/agent/agent', {
-        requires: {
-            './service': {
-                create: serviceFake
-            }
+var Agent = sandbox.require('../lib/agent/agent', {
+    requires: {
+        './service': {
+            create: serviceFake
         }
-    });
+    }
+});
 
-    it('should start all registered services', function() {
+
+describe('agent.start', function(){
+    it('should start all registered services', function(done) {
         var agent = Agent.create({
             get_registrations: function(callback){
                 callback(null, [registrationFake()]);
             }
         })
 
-        agent.start();
-
-        var services = agent.get_services();
-
-        assert.strictEqual(services[0].start_calls(), 1);
+        agent.start(function(err, services){
+            assert.strictEqual(services[0].start_calls(), 1);
+            done();
+        });
     });
+});
+
+describe('agent.allocate', function(){
+    it('should return registration on min port when no prior registrations', function(done){
+        var agent = Agent.create({
+            get_registrations: function(callback){
+                callback(null, []);
+            }
+        }, {
+            min: 7,
+            max: 9
+        });
+
+        agent.allocate({
+            name: 'servicename',
+            install: {
+            },
+            start: {
+            },
+            commands: {
+            }
+        }, function(err, registration){
+            assert.strictEqual(registration.port, 7);
+            done();
+        });
+    })
 });
