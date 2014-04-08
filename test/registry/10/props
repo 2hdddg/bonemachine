@@ -1,0 +1,16 @@
+{
+    "name": "service on port 10",
+    "install": {
+        "command": "command to install",
+        "args": ["install arg" ]
+    },
+    "start": {
+        "command": "command to start",
+        "args": ["start arg", "port arg" ],
+        "port_arg": 1
+    },
+    "commands": {
+        "suspend": "/suspend",
+        "stop": "/stop"
+    }
+}
