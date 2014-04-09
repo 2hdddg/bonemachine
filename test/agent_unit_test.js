@@ -46,6 +46,9 @@ function registryFake(registrations){
     return {
         get_registrations: function(callback){
             callback(null, registrations);
+        },
+        register: function(registration, callback){
+            callback(null, registration);
         }
     };
 }
