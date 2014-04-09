@@ -31,6 +31,7 @@ function open_empty_registry(){
 function ensure_empty_registry_is_empty(){
     var registry_path = __dirname + '/registry_empty';
     deleteFolderRecursive(registry_path);
+    fs.mkdirSync(registry_path);
 }
 
 function create_registration(port, name, state){
@@ -84,14 +85,19 @@ describe('registry.register', function(){
         var registry = open_empty_registry();
         var registration = create_registration(666, 'a name', 'installed');
         registry.register(registration, function(error, r){
+            if (error) return done(error);
+
             // just to check that it adds registration to callback
             assert.strictEqual(r.port, registration.port);
+
             // reopen to ensure that it was persisted
             registry = open_empty_registry();
             registry.get_registrations(function(error, registrations){
-                assert.strictEqal(registrations[0].state, 'installed');
-            });
+                if (error) return done(error);
 
+                assert.strictEqual(registrations[0].state, 'installed');
+                done();
+            });
         });
     });
 });
