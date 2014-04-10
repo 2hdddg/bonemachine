@@ -1,0 +1,21 @@
+{
+    "name": "a name",
+    "install": {
+        "command": "install command",
+        "args": [],
+        "port_arg": 0
+    },
+    "start": {
+        "command": "start command",
+        "args": [],
+        "port_arg": 1
+    },
+    "commands": {
+        "suspend": {
+            "href": ""
+        },
+        "stop": {
+            "href": ""
+        }
+    }
+}
