@@ -83,7 +83,7 @@ describe('agent.allocate', function(){
             assert.strictEqual(registration.port, range.min);
             done();
         });
-    })
+    });
 
     it('should find hole in port usage', function(done){
         var range = create_port_range(7, 9);
@@ -98,5 +98,5 @@ describe('agent.allocate', function(){
             assert.strictEqual(registration.port, 8);
             done();
         });
-    })
+    });
 });

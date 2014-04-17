@@ -61,7 +61,7 @@ describe('registry.get_registrations', function(){
         registry.get_registrations(function(error, registrations){
             var on_port_10 = _.find(registrations, function(r){
                 return r.port === 10;
-            })
+            });
             assert.strictEqual(on_port_10.state, 'installed');
             done();
         });
@@ -72,7 +72,7 @@ describe('registry.get_registrations', function(){
         registry.get_registrations(function(error, registrations){
             var on_port_12 = _.find(registrations, function(r){
                 return r.port === 12;
-            })
+            });
             assert.strictEqual(on_port_12.name, 'service on port 12');
             done();
         });

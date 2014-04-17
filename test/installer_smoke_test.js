@@ -35,8 +35,8 @@ describe('installer.retrieve_service_description', function(){
         installer.retrieve_service_description(service_path(), function(error, service_description){
             if (error) return done(error);
 
-            assert.equal(service_description, service)
+            assert.deepEqual(service_description, service);
             done();
         });
     });
-})
+});
