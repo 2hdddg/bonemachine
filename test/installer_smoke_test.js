@@ -28,11 +28,11 @@ var service = {
     }
 };
 
-describe('installer.get_description', function(){
+describe('installer.getDescription', function(){
     it('can read a valid service description', function(done){
         var installer = Installer.create();
 
-        installer.get_description(getServicePath(), function(error, serviceDescription){
+        installer.getDescription(getServicePath(), function(error, serviceDescription){
             if (error) return done(error);
 
             assert.deepEqual(serviceDescription, service);
