@@ -2,7 +2,7 @@ var path = require('path');
 var assert = require('assert');
 var Installer = require('../lib/installer/installer');
 
-function service_path(){
+function getServicePath(){
     return path.join(__dirname, 'service');
 }
 
@@ -28,14 +28,14 @@ var service = {
     }
 };
 
-describe('installer.retrieve_service_description', function(){
-    it('can read a valid service', function(done){
+describe('installer.get_description', function(){
+    it('can read a valid service description', function(done){
         var installer = Installer.create();
 
-        installer.retrieve_service_description(service_path(), function(error, service_description){
+        installer.get_description(getServicePath(), function(error, serviceDescription){
             if (error) return done(error);
 
-            assert.deepEqual(service_description, service);
+            assert.deepEqual(serviceDescription, service);
             done();
         });
     });

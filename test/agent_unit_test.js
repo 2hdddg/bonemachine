@@ -2,35 +2,35 @@ var assert = require('assert');
 var sandbox = require('sandboxed-module');
 
 function serviceFake(registration){
-    var start_calls = 0;
+    var startCalls = 0;
 
     return {
         start: function(){
-            start_calls++;
+            startCalls++;
         },
         registration: registration,
 
         // for inspection
-        start_calls: function() {
-            return start_calls;
+        startCalls: function() {
+            return startCalls;
         }
     };
 }
 
-function registrationFake(port){
+function getRegistrationFake(port){
     return {
         port: port
     };
 }
 
-function create_port_range(min, max){
+function createPortrange(min, max){
     return {
         min: min,
         max: max
     };
 }
 
-function create_allocation(name){
+function createAllocation(name){
     return {
         name: 'servicename',
         install: {
@@ -42,7 +42,7 @@ function create_allocation(name){
     };
 }
 
-function registryFake(registrations){
+function getregisTryfake(registrations){
     return {
         get_registrations: function(callback){
             callback(null, registrations);
@@ -64,10 +64,10 @@ var Agent = sandbox.require('../lib/agent/agent', {
 
 describe('agent.start', function(){
     it('should start all registered services', function(done) {
-        var agent = Agent.create(registryFake([registrationFake()]));
+        var agent = Agent.create(getregisTryfake([getRegistrationFake()]));
 
         agent.start(function(err, services){
-            assert.strictEqual(services[0].start_calls(), 1);
+            assert.strictEqual(services[0].startCalls(), 1);
             done();
         });
     });
@@ -75,9 +75,9 @@ describe('agent.start', function(){
 
 describe('agent.allocate', function(){
     it('should return registration on min port when no prior registrations', function(done){
-        var range = create_port_range(7, 9);
-        var agent = Agent.create(registryFake([]), range);
-        var allocation = create_allocation('name');
+        var range = createPortrange(7, 9);
+        var agent = Agent.create(getregisTryfake([]), range);
+        var allocation = createAllocation('name');
 
         agent.allocate(allocation, function(err, registration){
             assert.strictEqual(registration.port, range.min);
@@ -86,13 +86,13 @@ describe('agent.allocate', function(){
     });
 
     it('should find hole in port usage', function(done){
-        var range = create_port_range(7, 9);
+        var range = createPortrange(7, 9);
         var registrations = [
-            registrationFake(7),
-            registrationFake(9)
+            getRegistrationFake(7),
+            getRegistrationFake(9)
         ];
-        var agent = Agent.create(registryFake(registrations), range);
-        var allocation = create_allocation('name');
+        var agent = Agent.create(getregisTryfake(registrations), range);
+        var allocation = createAllocation('name');
 
         agent.allocate(allocation, function(err, registration){
             assert.strictEqual(registration.port, 8);
