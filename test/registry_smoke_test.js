@@ -100,4 +100,20 @@ describe('registry.register', function(){
             });
         });
     });
+
+    it('should assign a unique id to the registration', function(done){
+        ensureEmptyregistryisEmpty();
+        var registry = openEmptyregistry();
+        var registration = createRegistration(666, 'a name', 'installed');
+        registry.register(registration, function(error, r1){
+            var id = r1.id;
+            // do it again to check that it is not dependent on naming
+            ensureEmptyregistryisEmpty();
+            registry = openEmptyregistry();
+            registry.register(registration, function(error, r2){
+                assert.ok(id !== r2.id);
+                done();
+            });
+        });
+    })
 });
