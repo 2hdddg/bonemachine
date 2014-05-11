@@ -30,7 +30,7 @@ function createPortrange(min, max){
     };
 }
 
-function createAllocation(name){
+function createServiceDescription(name){
     return {
         name: 'servicename',
         install: {
@@ -77,10 +77,10 @@ describe('agent.allocate', function(){
     it('should return registration on min port when no prior registrations', function(done){
         var range = createPortrange(7, 9);
         var agent = Agent.create(getRegistryFake([]), range);
-        var allocation = createAllocation('name');
+        var serviceDescription = createServiceDescription('name');
 
-        agent.allocate(allocation, function(err, registration){
-            assert.strictEqual(registration.port, range.min);
+        agent.allocate(serviceDescription, function(err, service){
+            assert.strictEqual(service.registration.port, range.min);
             done();
         });
     });
@@ -92,10 +92,10 @@ describe('agent.allocate', function(){
             getRegistrationFake(9)
         ];
         var agent = Agent.create(getRegistryFake(registrations), range);
-        var allocation = createAllocation('name');
+        var serviceDescription = createServiceDescription('name');
 
-        agent.allocate(allocation, function(err, registration){
-            assert.strictEqual(registration.port, 8);
+        agent.allocate(serviceDescription, function(err, service){
+            assert.strictEqual(service.registration.port, 8);
             done();
         });
     });
