@@ -46,7 +46,6 @@ function createRegistration(port, name, state){
     };
 }
 
-
 describe('registry.getRegistrations', function(){
     it('should find two registrations', function(done){
         var registry = openRegistry();
