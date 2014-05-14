@@ -114,5 +114,5 @@ describe('registry.register', function(){
                 done();
             });
         });
-    })
+    });
 });
